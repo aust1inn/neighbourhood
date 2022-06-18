@@ -31,8 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.sites',
-    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +50,9 @@ REGISTRATION_AUTO_LOGIN = True
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL='home'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
