@@ -21,7 +21,7 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'accounts/registration_form.html', {'form': form})     
 
-def edit_profile(request):
+def update_profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
