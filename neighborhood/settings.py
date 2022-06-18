@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
     'registration',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 ACCOUNT_ACTIVATION_DAYS = 30
+REGISTRATION_AUTO_LOGIN = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
