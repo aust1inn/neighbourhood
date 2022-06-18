@@ -45,28 +45,23 @@ class Business(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
-    profile_photo= models.ImageField(upload_to='profiles/',null=True)
+    profile_photo= models.ImageField(upload_to='profiles/',null=True,default='default.jpg')
     bio= models.CharField(max_length=240, null=True)
-    email = models.CharField(max_length=100, blank=True, null=True)
-
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
 
 
-    @receiver(post_save, sender=User)
-    def update_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-        instance.profile.save()
+    def save_profile(self):
+        self.save()
 
     @classmethod
     def get_profile(cls):
         profile = Profile.objects.all()
         return profile
 
-    class Meta:
-        ordering = ['user']
+    @classmethod
+    def find_profile(cls,search_term):
+        profile = Profile.objects.filter(user__username__icontains=search_term)
+        return profile
+
 
 
 
