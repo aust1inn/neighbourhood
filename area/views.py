@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponseRedirect
 
 from .models import *
 from .forms import *
@@ -153,3 +153,8 @@ def new_business(request):
     else:
         form = BusinessForm()
     return render(request, 'business.html', {"form": form})              
+
+def delete_post(request, postId):
+    Posts.objects.filter(pk=postId).delete()
+    messages.error(request, 'Succesfully Deleted a Post')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))    
