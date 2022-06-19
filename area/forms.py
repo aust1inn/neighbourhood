@@ -30,4 +30,10 @@ class CreateHoodForm(forms.ModelForm):
 class BusinessForm(forms.ModelForm):
     class Meta:
         model = Business
-        exclude = ['user','hood']        
+        exclude = ['user','hood']    
+
+class PostForm(forms.ModelForm):
+
+	class Meta:
+		model = Posts
+		fields = ['title','content']            
