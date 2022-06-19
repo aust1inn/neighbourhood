@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^createhood/$', views.create_hood, name='create_hood'),
+    url(r'^join/(\d+)', views.join, name='join'),
 
 ]
 
