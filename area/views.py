@@ -136,4 +136,20 @@ def create_post(request):
                 return redirect('home')
         else:
             form = PostForm()
-        return render(request, 'createpost.html', {"form": form})        
+        return render(request, 'createpost.html', {"form": form})  
+
+def new_business(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user = current_user
+            business.hood = request.user.join.hood_id
+            business.save()
+            return redirect('home')
+
+    else:
+        form = BusinessForm()
+    return render(request, 'business.html', {"form": form})              
