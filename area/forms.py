@@ -21,3 +21,8 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
 
+class CreateHoodForm(forms.ModelForm):
+
+	class Meta:
+		model = Hood
+		exclude = ['user','occupants_count']
