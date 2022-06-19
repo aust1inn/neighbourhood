@@ -26,3 +26,8 @@ class CreateHoodForm(forms.ModelForm):
 	class Meta:
 		model = Hood
 		exclude = ['user','occupants_count']
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        exclude = ['user','hood']        
