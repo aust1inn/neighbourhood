@@ -62,14 +62,16 @@ def update_profile(request):
         'p_form': p_form
     }
  
-    return render(request, 'profiles/edit_profile.html', context)       
+    return render(request, 'profiles/edit_profile.html', context)      
 
+@login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
     hoods = Hood.objects.filter(user=request.user).all()
     business = Business.objects.filter(user=request.user).all()
     return render(request, 'profiles/profile.html', {"profile": profile, "hoods": hoods, "business": business})
 
+@login_required
 def create_hood(request):
     current_user = request.user
     if request.method == 'POST':
