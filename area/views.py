@@ -112,3 +112,11 @@ def search(request):
     else:
         message = "You Haven't searched for any hood"
         return render(request, 'areas/search.html', {"message": message})    
+
+def exitHood(request, hoodId):
+
+    if Join.objects.filter(user_id=request.user).exists():
+        Join.objects.get(user_id=request.user).delete()
+        messages.error(
+            request, 'You have succesfully exited this Neighbourhood.')
+        return redirect('home')        
