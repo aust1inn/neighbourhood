@@ -84,3 +84,16 @@ def create_hood(request):
     else:
         form = CreateHoodForm()
     return render(request, 'areas/create_hood.html', {"form": form})    
+
+def join(request, hoodId):
+
+    hood = Hood.objects.get(pk=hoodId)
+    if Join.objects.filter(user_id=request.user).exists():
+        Join.objects.filter(user_id=request.user).update(hood_id=hood)
+    else:
+
+        Join(user_id=request.user, hood_id=hood).save()
+
+    messages.success(
+        request, 'Success! You have succesfully joined this Neighbourhood ')
+    return redirect('home')    
