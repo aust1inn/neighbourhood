@@ -107,8 +107,8 @@ def search(request):
         hoods = Hood.search_hood(hood_search)
         message = f"{hood_search}"
 
-        return render(request, 'hoods/search.html', {"message": message, "hoods": hoods})
+        return render(request, 'areas/search.html', {"message": message, "hoods": hoods})
 
     else:
         message = "You Haven't searched for any hood"
-        return render(request, 'hood/search.html', {"message": message})    
+        return render(request, 'areas/search.html', {"message": message})    
