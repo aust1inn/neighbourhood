@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from .models import *
 from .forms import *
@@ -37,7 +39,23 @@ def register(request):
     return render(request, 'accounts/registration_form.html', {'form': form})    
 
 def profile(request):
-    return render(request, 'profiles/profile.html')       
+
+    current_user = request.user
+    images =  Image.objects.filter(profile = current_user.profile)
+    try:
+        profile = Profile.objects.get(user = current_user)
+        
+    except: 
+        ObjectDoesNotExist
+    
+    context = {
+        
+        'profile':profile,
+        'images':images,
+        'current_user':current_user
+    }
+    
+    return render(request, 'profiles/profile.html' ,context)       
 
 def update_profile(request):
     if request.method == 'POST':
