@@ -120,3 +120,20 @@ def exitHood(request, hoodId):
         messages.error(
             request, 'You have succesfully exited this Neighbourhood.')
         return redirect('home')        
+
+def create_post(request):
+
+    if Join.objects.filter(user_id=request.user).exists():
+        if request.method == 'POST':
+            form = PostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.posted_by = request.user
+                post.hood = request.user.join.hood_id
+                post.save()
+                messages.success(
+                    request, 'You have succesfully created a Post')
+                return redirect('home')
+        else:
+            form = PostForm()
+        return render(request, 'createpost.html', {"form": form})        
