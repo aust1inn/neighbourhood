@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^exitHood/(\d+)', views.exitHood, name='exitHood'),
     url(r'^createpost/$', views.create_post, name='create_post'),
+    url(r'^new/business', views.new_business, name='add_business'),
 
 
 ]
