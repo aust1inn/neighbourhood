@@ -20,7 +20,7 @@
       <a class="btn btn-sm btn-danger" href="{% url 'exitHood' hood.id %}" style="margin:10px">Leave Neighbourhood</a>
       <br>
       <a class="btn btn-sm btn-secondary" href="{% url 'create_post' %}">Create Post</a>
-      <a class="btn btn-sm btn-secondary" href="">Add Business</a>
+      <a class="btn btn-sm btn-secondary" href="{% url 'add_business' %}">Add Business</a>
      
     </div>
 
@@ -75,7 +75,7 @@
     <div>
       {% else %}
       <p>No Businesses</p>
-      <a class="btn btn-sm btn-secondary" href="">Add Business</a>
+      <a class="btn btn-sm btn-secondary" href="{% url 'add_business' %}">Add Business</a>
       {% endif %}
     </div>
   </div>
