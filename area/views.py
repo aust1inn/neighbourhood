@@ -67,3 +67,18 @@ def profile(request):
     hoods = Hood.objects.filter(user=request.user).all()
     business = Business.objects.filter(user=request.user).all()
     return render(request, 'profiles/profile.html', {"profile": profile, "hoods": hoods, "business": business})
+
+def create_hood(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = CreateHoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.user = current_user
+            hood.save()
+            messages.success(
+                request, 'You Have succesfully created a hood.Now proceed and join a hood')
+        return redirect('home')
+    else:
+        form = CreateHoodForm()
+    return render(request, 'hoods/create_hood.html', {"form": form})    
