@@ -19,7 +19,10 @@ def register(request):
             return redirect('home')
     else:
         form = UserRegisterForm()
-    return render(request, 'accounts/registration_form.html', {'form': form})     
+    return render(request, 'accounts/registration_form.html', {'form': form})    
+
+def profile(request):
+    return render(request, 'profiles/profile.html')       
 
 def update_profile(request):
     if request.method == 'POST':
