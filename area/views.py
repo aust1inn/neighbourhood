@@ -61,3 +61,9 @@ def update_profile(request):
     }
  
     return render(request, 'profiles/edit_profile.html', context)       
+
+def profile(request):
+    profile = Profile.objects.get(user=request.user)
+    hoods = Hood.objects.filter(user=request.user).all()
+    business = Business.objects.filter(user=request.user).all()
+    return render(request, 'profiles/profile.html', {"profile": profile, "hoods": hoods, "business": business})
