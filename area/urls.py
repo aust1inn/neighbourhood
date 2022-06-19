@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^createhood/$', views.create_hood, name='create_hood'),
     url(r'^join/(\d+)', views.join, name='join'),
     url(r'^search/$', views.search, name='search'),
+    url(r'^exitHood/(\d+)', views.exitHood, name='exitHood'),
+
 
 
 ]
