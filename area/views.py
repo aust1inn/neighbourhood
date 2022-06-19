@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 
 from .models import *
@@ -38,24 +39,7 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'accounts/registration_form.html', {'form': form})    
 
-def profile(request):
-
-    current_user = request.user
-    images =  Image.objects.filter(profile = current_user.profile)
-    try:
-        profile = Profile.objects.get(user = current_user)
-        
-    except: 
-        ObjectDoesNotExist
-    
-    context = {
-        
-        'profile':profile,
-        'images':images,
-        'current_user':current_user
-    }
-    
-    return render(request, 'profiles/profile.html' ,context)       
+   
 
 def update_profile(request):
     if request.method == 'POST':
