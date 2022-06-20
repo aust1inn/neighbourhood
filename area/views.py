@@ -85,8 +85,9 @@ def create_hood(request):
         return redirect('home')
     else:
         form = CreateHoodForm()
-    return render(request, 'areas/create_hood.html', {"form": form})    
-
+    return render(request, 'areas/create_hood.html', {"form": form}) 
+       
+@login_required
 def join(request, hoodId):
 
     hood = Hood.objects.get(pk=hoodId)

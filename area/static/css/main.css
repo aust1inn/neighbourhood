@@ -13,6 +13,7 @@
 
   .card-columns {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .hoods{
