@@ -32,4 +32,8 @@
   .mynav{
     justify-content: space-between;
   }
+
+  .navbar{
+    height: 15vh;
+  }
   
